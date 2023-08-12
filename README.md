@@ -1,2 +1,7 @@
-# merkeltree-whitelist
-merkeltree-whitelist
+# MerkelTree
+
+`npm start`
+
+`npm test`
+
+`npm run build`
