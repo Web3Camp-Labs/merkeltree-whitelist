@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 import Textarea from "@mui/joy/Textarea";
 import Button from "@mui/joy/Button";
+import { toast } from "react-toastify";
 import { useCSVReader } from "react-papaparse";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ResultBox from "./resultBox";
 
 export default function InputBox() {
@@ -20,6 +21,8 @@ export default function InputBox() {
     // TODO: generate whitelist
     setResult("1234");
     setRootHash("0x000000000000000000000000000000000000bEEF");
+    // toast error example
+    toast.error("Error: something went wrong");
   };
   const handleClearResult = () => {
     setResult("");
