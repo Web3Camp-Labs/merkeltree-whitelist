@@ -5,13 +5,20 @@ import CopyIcon from "../assets/copy.svg";
 
 interface IProps {
   rootHash?: string;
-  data: any;
+  data: object;
   handleClose: () => void;
 }
 
 export default function ResultBox({ rootHash, data, handleClose }: IProps) {
   const onClickDownload = () => {
     //   TODO download file
+    const dataStr =
+      "data:text/json;charset=utf-8," +
+      encodeURIComponent(JSON.stringify(data));
+    const link = document.createElement("a");
+    link.download = "tree.json";
+    link.href = dataStr;
+    link.click();
   };
   return (
     <ResultBoxStyle>

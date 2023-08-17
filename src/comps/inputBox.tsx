@@ -9,7 +9,7 @@ import ResultBox from "./resultBox";
 export default function InputBox() {
   const { CSVReader } = useCSVReader();
   const [inputValue, setInputValue] = useState<string>("");
-  const [result, setResult] = useState<any>("");
+  const [result, setResult] = useState<object>();
   const [rootHash, setRootHash] = useState("");
   const [lines, setLines] = useState<string[]>([]);
 
@@ -19,13 +19,13 @@ export default function InputBox() {
 
   const onClickGenerate = () => {
     // TODO: generate whitelist
-    setResult("1234");
+    setResult({a: 1, b: 2});
     setRootHash("0x000000000000000000000000000000000000bEEF");
     // toast error example
     toast.error("Error: something went wrong");
   };
   const handleClearResult = () => {
-    setResult("");
+    setResult(undefined);
     setRootHash("");
   };
 
