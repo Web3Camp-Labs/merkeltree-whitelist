@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import {Container} from 'react-bootstrap';
 const Footer = styled.div`
   height: 80px;
