@@ -11,7 +11,6 @@ interface IProps {
 
 export default function ResultBox({ rootHash, data, handleClose }: IProps) {
   const onClickDownload = () => {
-    //   TODO download file
     const dataStr =
       "data:text/json;charset=utf-8," +
       encodeURIComponent(JSON.stringify(data));

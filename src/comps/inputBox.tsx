@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
 import Textarea from "@mui/joy/Textarea";
 import Button from "@mui/joy/Button";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import { useCSVReader } from "react-papaparse";
 import { useEffect, useState } from "react";
 import ResultBox from "./resultBox";
+import goMerklizedSetup from "../utils/whitelist";
 
 export default function InputBox() {
   const { CSVReader } = useCSVReader();
@@ -15,14 +16,27 @@ export default function InputBox() {
 
   const handleCSVfile = (data: string[][]) => {
     console.log(data);
+    let str = "";
+    data.forEach((row, i) => {
+      if (i > 0) {
+        str += "\n";
+      }
+      str += row.join(" ");
+    });
+    setInputValue(str);
   };
 
   const onClickGenerate = () => {
-    // TODO: generate whitelist
-    setResult({a: 1, b: 2});
-    setRootHash("0x000000000000000000000000000000000000bEEF");
+    const lst_data = inputValue.split("\n").map((row) => row.split(" "));
+    if (!lst_data.length) {
+      return;
+    }
+    const data = goMerklizedSetup(lst_data);
+
+    setResult(data);
+    setRootHash(data.rootHash);
     // toast error example
-    toast.error("Error: something went wrong");
+    // toast.error("Error: something went wrong");
   };
   const handleClearResult = () => {
     setResult(undefined);
@@ -60,7 +74,7 @@ export default function InputBox() {
             <div className="input">
               <Textarea
                 variant="solid"
-                placeholder="Type anything…"
+                placeholder="address"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 minRows={15}
@@ -91,7 +105,7 @@ export default function InputBox() {
               className="btn-generate"
               onClick={onClickGenerate}
             >
-              Generate Whitelist
+              Generate
             </Button>
           </ChooseFileBox>
         </>
